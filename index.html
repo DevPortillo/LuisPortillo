@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luis González - Portafolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-image: url(background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            color: #ffffffa2;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 100%;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(17, 5, 73, 0.233) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header y portada */
+        .cover-section {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 100px;
+            box-shadow: 0 20px 50px rgba(201, 155, 4, 0.534);
+            border: 1px solid rgba(241, 238, 4, 0.829);
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .profile-section {
+            position: relative;
+            padding: 0 40px 40px;
+            margin-top: -80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-image-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #0a0a1a;
+            box-shadow: 0 10px 30px rgba(121, 93, 3, 0.726);
+            transition: transform 0.5s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-name {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #c09e08, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(255, 250, 250, 0);
+        }
+
+        .profile-title {
+            font-size: 1.3rem;
+            color: #f4f4f5;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .intro-text {
+            background: rgba(20, 20, 40, 0.226);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #9e840f;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .intro-text:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Main content */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(187, 159, 2, 0.445);
+            border: 1px solid rgb(255, 255, 255);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ffffff, #fac001);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 255, 255, 0.719);
+            border-color: rgba(214, 176, 6, 0.671);
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+            border-color: #c09e08;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            font-size: 1.5rem;
+        }
+
+        /* Skills section */
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .skill-rating {
+            color: #ffcc00;
+        }
+
+        /* Languages section */
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .language-item {
+            background: rgba(30, 30, 60, 0.596);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .language-item:hover {
+            background: rgba(40, 40, 80, 0.9);
+            border-color: #ffc400;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.808);
+            transform: scale(1.05);
+        }
+
+        .language-name {
+            font-weight: 600;
+            color: #beadfa;
+        }
+
+        /* Redes sociales */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(30, 30, 60, 0.7);
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: rgba(45, 45, 92, 0.9);
+            border-color: #ffd000;
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.808);
+        }
+
+        /* Sección de contacto */
+        .contact-section {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 20px;
+            padding: 50px 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(252, 193, 0, 0.726);
+            border: 1px solid rgb(255, 255, 255);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ffffff, #ffd000);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgb(255, 255, 255);
+            border-color: rgba(255, 196, 0, 0.781);
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .email-container {
+            background: rgba(30, 30, 60, 0.7);
+            padding: 20px 40px;
+            border-radius: 50px;
+            border: 2px solid rgba(30, 30, 60, 0.7);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .email-container:hover {
+            background: rgba(40, 40, 80, 0.9);
+            border-color: #ffd000;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgb(255, 255, 255);
+        }
+
+        .email-icon {
+            font-size: 1.8rem;
+            color: #00ccff;
+        }
+
+        .email-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 200, 100, 0.9);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+/* Estilos base (móvil primero) */
+.audio-player,
+.visitor-counter {
+    box-sizing: border-box;
+    margin: 30px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 260px;
+    border-radius: 18px;
+    background: rgba(20, 20, 40, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0 12px 30px rgba(255, 187, 0, 0.6);
+    transition: all 0.4s ease;
+    text-align: center;
+}
+
+/* Reproductor de audio */
+.audio-player {
+    padding: 22px;
+}
+
+.audio-player h3 {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.audio-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(30, 30, 60, 0.8);
+    border: none;
+    color: white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+    background: rgba(50, 50, 100, 0.9);
+    transform: scale(1.12);
+    color: #fad400;
+}
+
+.volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.volume-slider {
+    flex-grow: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    outline: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #0a0a1a;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00ccff;
+    border: 2px solid #0a0a1a;
+    cursor: pointer;
+}
+
+/* Contador de visitas */
+.visitor-counter {
+    padding: 18px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.visitor-icon {
+    font-size: 2.2rem;
+    color: #00ccff;
+    background: rgba(0, 204, 255, 0.1);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.visitor-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.visitor-count {
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: #00ff88;
+    line-height: 1;
+    text-shadow: 0 0 12px rgba(0, 255, 136, 0.4);
+    margin: 0;
+}
+
+.visitor-label {
+    font-size: 1.05rem;
+    color: #a0a0ff;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.visitor-subtitle {
+    font-size: 0.85rem;
+    color: #8888cc;
+    margin-top: 6px;
+    font-style: italic;
+}
+
+/* Hover effects (solo si es dispositivo con puntero) */
+@media (hover: hover) and (pointer: fine) {
+    .audio-player:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgb(255, 255, 255);
+        border-color: rgb(255, 208, 0);
+    }
+
+    .visitor-counter:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 42px rgb(255, 255, 255);
+        border-color: rgb(255, 208, 0);
+    }
+
+    .visitor-counter:hover .visitor-icon {
+        transform: scale(1.1) rotate(5deg);
+        background: rgba(0, 204, 255, 0.2);
+        box-shadow: 0 0 20px rgba(0, 204, 255, 0.3);
+    }
+
+    .visitor-counter:hover .visitor-count {
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+    }
+}
+
+/* Tablet (768px – 1023px) */
+@media (min-width: 768px) {
+    .audio-player,
+    .visitor-counter {
+        max-width: 300px;
+        padding: 25px;
+        margin: 40px auto;
+    }
+
+    .audio-player h3 {
+        font-size: 1.3rem;
+    }
+
+    .player-controls {
+        gap: 16px;
+    }
+
+    .audio-btn {
+        width: 46px;
+        height: 46px;
+        font-size: 1.3rem;
+    }
+
+    .volume-controls {
+        gap: 12px;
+    }
+
+    .volume-slider {
+        height: 6px;
+    }
+
+    .visitor-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+    }
+
+    .visitor-count {
+        font-size: 3rem;
+    }
+
+    .visitor-label {
+        font-size: 1.15rem;
+    }
+
+    .visitor-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    .audio-player,
+    .visitor-counter {
+        max-width: 320px;
+    }
+
+    .audio-player h3 {
+        font-size: 1.4rem;
+    }
+
+    .visitor-count {
+        font-size: 3.2rem;
+    }
+
+    /* Opcional: centrar ambos elementos en pantallas anchas */
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+}
+
+/* Animación de entrada */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.visitor-counter {
+    animation: slideUp 0.8s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .visitor-counter {
+        padding: 20px;
+        margin: 30px 20px;
+        gap: 15px;
+    }
+    
+    .visitor-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+    }
+    
+    .visitor-count {
+        font-size: 2.5rem;
+    }
+    
+    .visitor-label {
+        font-size: 1rem;
+    }
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+    .visitor-counter {
+        bottom: 20px;
+        left: 20px;
+        padding: 12px 15px;
+    }
+    
+    .visitor-count {
+        font-size: 1.5rem;
+    }
+    
+    /* Ajustar posición del reproductor en móviles */
+    .audio-player {
+        bottom: 100px;
+    }
+}
+
+.track-info {
+    font-size: 0.9rem;
+    color: #a0a0ff;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(100, 100, 255, 0.1);
+            margin-top: 50px;
+            color: #a0a0ff;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .profile-name {
+                font-size: 2.2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cover-image {
+                height: 200px;
+            }
+            
+            .profile-section {
+                margin-top: -60px;
+                padding: 0 20px 30px;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-title {
+                font-size: 2rem;
+            }
+            
+            .email-text {
+                font-size: 1.1rem;
+            }
+            
+            .email-container {
+                padding: 15px 25px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; opacity: 0; }
+        .delay-2 { animation-delay: 0.4s; opacity: 0; }
+        .delay-3 { animation-delay: 0.6s; opacity: 0; }
+        .delay-4 { animation-delay: 0.8s; opacity: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- Video de fondo (reemplazar la URL en src) -->
+    <video autoplay muted loop id="video-background">
+        <source src="">
+    </video>
+    <div class="overlay"></div>
+
+    <div class="container">
+        <!-- Portada -->
+        <section class="cover-section fade-in">
+            <img src="banner.gif" class="cover-image">
+            
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <img src="foto.jpg" alt="Foto de perfil" class="profile-image">
+                </div>
+                
+                <h1 class="profile-name">Luis González</h1>
+                <p class="profile-title">Desarrollador Web, programador de Fivem, SAMP puntuación 5.5/10 - Cada día aprendiendo más para ser mejor</p>
+                
+                <div class="intro-text">
+                    <p>PortilloDev Programador de Páginas web, SAMP - GTA San Andreas online, Fivem - GTA V online, Bots Discord. Soy nuevo en este mundo con pocos conocimientos y estoy en constante crecimiento y aprendiendo poco a poco. Me encuentro estudiando Ingeniería en Informática. También soy Músico con 9 años de experiencia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenido principal -->
+        <div class="content-grid">
+            <!-- Habilidades -->
+            <section class="card fade-in delay-1">
+                <h2><i class="fas fa-star"></i> Puntuaciones</h2>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Fivem (GTA V)</span>
+                        <span class="skill-rating">4/10</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SAMP (San Andreas Multiplayer)</span>
+                        <span class="skill-rating">6.7/10</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Páginas Web</span>
+                        <span class="skill-rating">8.5/10</span>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Bots Discord</span>
+                        <span class="skill-rating">9.5/10</span>
+                    </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JS</span>
+                        <span class="skill-rating">3/10</span>
+                    </div>
+                    <div class="skill-item">
+                    <div class="skill-name">
+                        <span>C++</span>
+                        <span class="skill-rating">4.5/10</span>
+                    </div>
+                    <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span class="skill-rating">5.5/10</span>
+                    </div>
+                    <div class="skill-item">
+                    <div class="skill-name">
+                        <span>LUA</span>
+                        <span class="skill-rating">3/10</span>
+                    </div>
+                    <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML</span>
+                        <span class="skill-rating">8.5/10</span>
+                    </div>
+                    <div class="skill-item">
+                    <div class="skill-name">
+                        <span>CSS</span>
+                        <span class="skill-rating">8.5/10</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lenguajes -->
+            <section class="card fade-in delay-2">
+                <h2><i class="fas fa-code"></i> Lenguajes Usados en Mis Proyectos</h2>
+                <div class="language-grid">
+                    <div class="language-item">
+                        <div class="language-name">JavaScript</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">C++</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">Python</div>
+                    </div>
+                </div>
+                
+                <h2 style="margin-top: 30px;"><i class="fas fa-laptop-code"></i> Otros</h2>
+                <div class="language-grid">
+                    <div class="language-item">
+                        <div class="language-name">LUA</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">HTML</div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">CSS</div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="card fade-in delay-3">
+                <h2><i class="fas fa-share-alt"></i> Conéctate Conmigo</h2>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/LuisgonzYT" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/luisggcmusic/" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                   <!-- Redes sociales 
+                    <a href="https://twitter.com" target="_blank" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    -->
+                    <a href="https://discord.gg/UumrWExGds" target="_blank" class="social-link" title="@luisggcmusic">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@luisggcmusic" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+
+
+        <!-- Sección de contacto -->
+        <section class="contact-section fade-in delay-4">
+            <div class="contact-card">
+                <h2 class="contact-title">Comunícate Conmigo</h2>
+                
+                <div class="contact-info">
+                    <div class="email-container" id="email-copy">
+                        <i class="fas fa-envelope email-icon"></i>
+                        <span class="email-text">luisggcmusic@gmail.com</span>
+                    </div>
+                    
+                    <p style="color: #a0a0ff; margin-top: 10px;">
+                        <i class="fab fa-discord"></i> Discord: @luisggcmusic
+                    </p>
+                </div>
+            </div>
+        </section>
+
+            <!-- Contador de visitas al final de la página -->
+<div class="visitor-counter" id="visitor-counter">
+    <div class="visitor-icon">
+        <i class="fas fa-chart-line"></i>
+    </div>
+    <div class="visitor-content">
+        <div class="visitor-count" id="visit-count">0</div>
+        <div class="visitor-label">VISITAS A LA PÁGINA</div>
+        <div class="visitor-subtitle">Gracias por tu visita</div>
+    </div>
+</div>
+
+    <!-- Reproductor de audio flotante -->
+<div class="audio-player" id="audio-player">
+    <h3><i class="fas fa-music"></i> Música de fondo</h3>
+    
+    <audio id="background-audio" loop autoplay>
+        <!-- REEMPLAZA "tu-musica.mp3" CON LA URL DE TU ARCHIVO MP3 -->
+        <source src="song.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <div class="player-controls">
+        <button id="play-pause-btn" class="audio-btn">
+            <i class="fas fa-pause"></i>
+        </button>
+        
+        <div class="volume-controls">
+            <i class="fas fa-volume-up" id="volume-icon"></i>
+            <input type="range" id="volume-slider" class="volume-slider" 
+                   min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
+    
+    <div class="track-info">
+        Reproduciendo: Pista de fondo
+    </div>
+</div>
+
+        <footer>
+            <p>&copy; 2024 LLC PortilloDev - Luis González. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Notificación de copiado -->
+    <div class="copy-notification" id="copy-notification">
+        ¡Correo copiado al portapapeles!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Copiar correo al portapapeles
+            const emailContainer = document.getElementById('email-copy');
+            const copyNotification = document.getElementById('copy-notification');
+            
+            emailContainer.addEventListener('click', function() {
+                const email = 'luisggcmusic@gmail.com';
+                
+                // Usar la API del portapapeles
+                navigator.clipboard.writeText(email)
+                    .then(() => {
+                        // Mostrar notificación
+                        copyNotification.style.display = 'block';
+                        
+                        // Ocultar notificación después de 3 segundos
+                        setTimeout(() => {
+                            copyNotification.style.display = 'none';
+                        }, 3000);
+                    })
+                    .catch(err => {
+                        console.error('Error al copiar: ', err);
+                        // Fallback para navegadores antiguos
+                        const textArea = document.createElement('textarea');
+                        textArea.value = email;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        
+                        // Mostrar notificación
+                        copyNotification.style.display = 'block';
+                        copyNotification.textContent = '¡Correo copiado al portapapeles!';
+                        
+                        setTimeout(() => {
+                            copyNotification.style.display = 'none';
+                        }, 3000);
+                    });
+            });
+            
+            // Efectos de animación al hacer scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observar todos los elementos con clase .card
+            document.querySelectorAll('.card, .contact-card').forEach(card => {
+                observer.observe(card);
+            });
+            
+            // Efecto en los enlaces sociales
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.1)';
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+            
+            // Efecto en las tarjetas de lenguaje
+            const languageItems = document.querySelectorAll('.language-item');
+            languageItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Efecto en el contenedor de email
+            emailContainer.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            
+            emailContainer.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+ // Controlador de audio
+const audioPlayer = document.getElementById('audio-player');
+const audio = document.getElementById('background-audio');
+const playPauseBtn = document.getElementById('play-pause-btn');
+const volumeSlider = document.getElementById('volume-slider');
+const volumeIcon = document.getElementById('volume-icon');
+
+// Configurar volumen inicial
+audio.volume = 0.5;
+
+// Reproducir automáticamente (con manejo de errores)
+window.addEventListener('load', function() {
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.log("Reproducción automática bloqueada. El usuario debe interactuar primero.");
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        });
+    }
+});
+
+// Botón play/pause
+playPauseBtn.addEventListener('click', function() {
+    if (audio.paused) {
+        audio.play();
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    } else {
+        audio.pause();
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    }
+});
+
+// Control de volumen
+volumeSlider.addEventListener('input', function() {
+    audio.volume = this.value;
+    
+    // Cambiar icono según el volumen
+    if (this.value == 0) {
+        volumeIcon.className = 'fas fa-volume-mute';
+    } else if (this.value < 0.5) {
+        volumeIcon.className = 'fas fa-volume-down';
+    } else {
+        volumeIcon.className = 'fas fa-volume-up';
+    }
+});
+
+
+// Detectar cambios en el audio
+audio.addEventListener('play', function() {
+    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+});
+
+audio.addEventListener('pause', function() {
+    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+});
+// Contador de visitas usando localStorage
+function actualizarContadorVisitas() {
+    // Obtener el contador actual del localStorage
+    let contador = localStorage.getItem('contadorVisitas');
+    
+    // Si no existe, inicializar en 0
+    if (!contador) {
+        contador = 0;
+    }
+    
+    // Convertir a número y aumentar en 1
+    contador = parseInt(contador) + 1;
+    
+    // Guardar en localStorage
+    localStorage.setItem('contadorVisitas', contador);
+    
+    // Actualizar el display con animación
+    const visitCountElement = document.getElementById('visit-count');
+    const targetCount = contador;
+    let currentCount = 0;
+    
+    // Animación de conteo
+    const animateCounter = () => {
+        if (currentCount < targetCount) {
+            currentCount++;
+            visitCountElement.textContent = currentCount;
+            setTimeout(animateCounter, 50);
+        }
+    };
+    
+    animateCounter();
+    
+    return contador;
+}
+
+// Contador de visitas mejorado
+function inicializarContadorVisitas() {
+    const visitCountElement = document.getElementById('visit-count');
+    
+    // Obtener estadísticas del localStorage
+    let totalVisitas = localStorage.getItem('totalVisitasPagina');
+    let ultimaVisita = localStorage.getItem('ultimaVisitaPagina');
+    
+    // Inicializar si es la primera vez
+    if (!totalVisitas) {
+        totalVisitas = 0;
+    }
+    
+    // Convertir a número
+    totalVisitas = parseInt(totalVisitas);
+    
+    // Aumentar el contador
+    totalVisitas++;
+    
+    // Guardar en localStorage
+    localStorage.setItem('totalVisitasPagina', totalVisitas);
+    localStorage.setItem('ultimaVisitaPagina', new Date().toISOString());
+    
+    // Animación de conteo
+    let contadorActual = 0;
+    const duracionAnimacion = 1500; // 1.5 segundos
+    const incremento = Math.ceil(totalVisitas / (duracionAnimacion / 30));
+    
+    function animarContador() {
+        contadorActual += incremento;
+        if (contadorActual > totalVisitas) {
+            contadorActual = totalVisitas;
+        }
+        
+        visitCountElement.textContent = contadorActual.toLocaleString();
+        
+        if (contadorActual < totalVisitas) {
+            setTimeout(animarContador, 30);
+        }
+    }
+    
+    // Iniciar animación después de un pequeño delay
+    setTimeout(animarContador, 500);
+    
+    // Efectos interactivos
+    const visitorCounter = document.getElementById('visitor-counter');
+    
+    visitorCounter.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+    });
+    
+    visitorCounter.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+    
+    // Efecto de clic
+    visitorCounter.addEventListener('click', function() {
+        // Mostrar información detallada temporalmente
+        const originalLabel = document.querySelector('.visitor-subtitle').textContent;
+        document.querySelector('.visitor-subtitle').textContent = 
+            `Última visita: ${new Date(ultimaVisita || new Date()).toLocaleDateString()}`;
+        
+        setTimeout(() => {
+            document.querySelector('.visitor-subtitle').textContent = originalLabel;
+        }, 2000);
+    });
+    
+    // Actualización en tiempo real (simulada)
+    function simularVisitasReales() {
+        setInterval(() => {
+            // Ocasionalmente aumentar el contador (solo visualmente)
+            if (Math.random() > 0.7) { // 30% de probabilidad
+                const aumento = Math.floor(Math.random() * 3) + 1;
+                totalVisitas += aumento;
+                
+                // Actualizar visualmente con animación suave
+                let tempContador = parseInt(visitCountElement.textContent.replace(/,/g, ''));
+                const interval = setInterval(() => {
+                    if (tempContador < totalVisitas) {
+                        tempContador++;
+                        visitCountElement.textContent = tempContador.toLocaleString();
+                    } else {
+                        clearInterval(interval);
+                    }
+                }, 100);
+            }
+        }, 15000); // Cada 15 segundos
+    }
+    
+    // Iniciar simulación después de 10 segundos
+    setTimeout(simularVisitasReales, 10000);
+}
+
+// Inicializar cuando la página cargue
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar un momento para que la página se cargue completamente
+    setTimeout(inicializarContadorVisitas, 1000);
+});
+
+// Efecto de aparición al hacer scroll
+window.addEventListener('scroll', function() {
+    const visitorCounter = document.getElementById('visitor-counter');
+    const rect = visitorCounter.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    // Cuando el elemento esté a 100px de entrar a la vista
+    if (rect.top < windowHeight - 100) {
+        visitorCounter.style.opacity = '1';
+        visitorCounter.style.transform = 'translateY(0)';
+    }
+});
+    </script>
+</body>
+</html>
